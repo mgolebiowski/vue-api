@@ -4,7 +4,7 @@ export default {
   name: 'Commits',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: 'Vue.js App',
       isNotReady: true,
       commits: []
     }

@@ -16,7 +16,7 @@ export default {
 
 <template>
   <div>
-    <paginate-links for="commitsPag" :show-step-links="true"></paginate-links>
+    <paginate-links v-if="commits.length" for="commitsPag" :show-step-links="true"></paginate-links>
     <paginate
       ref="paginator"
       name="commitsPag"
@@ -29,7 +29,7 @@ export default {
             v-bind:commit="commit">
       </commit-item>
     </paginate>
-    <span v-if="$refs.paginator">
+    <span v-if="$refs.paginator && commits.length">
       Viewing {{$refs.paginator.pageItemsCount}} results
     </span>
   </div>
@@ -40,10 +40,16 @@ export default {
   ul.paginate-links{
     list-style: none;
     text-align: center;
+    padding: 0;
   }
   ul.paginate-links li{
     display: inline-block;
-    width: 50px;
+    width:50px;
+    cursor: pointer;
+  }
+  ul.paginate-links > li > a{
+    display: block;
+    width: 100%;
   }
   ul.paginate-links > li.active > a{
     font-weight: bold;
