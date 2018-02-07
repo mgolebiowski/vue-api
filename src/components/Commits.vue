@@ -1,12 +1,12 @@
 <script>
-import TweetsList from "@/components/TweetsList"
+import CommitsList from "@/components/CommitsList"
 export default {
-  name: 'HelloWorld',
+  name: 'Commits',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       isNotReady: true,
-      tweets: []
+      commits: []
     }
   },
   created () {
@@ -17,13 +17,13 @@ export default {
         newObj.author = Obj["commit"]["author"]["name"];
         newObj.content = Obj["commit"]["message"];
         newObj.date = Obj["commit"]["author"]["date"];
-        this.tweets.push(newObj);
+        this.commits.push(newObj);
       });
       this.isNotReady = false;
     });
   },
   components: {
-    "tweets-list": TweetsList
+    "commits-list": CommitsList
   }
 }
 </script>
@@ -32,7 +32,7 @@ export default {
   <div>
     <h1>{{msg}} | Commits</h1>
     <h3 v-if="isNotReady">Please wait...</h3>
-    <tweets-list v-bind:tweets="tweets"></tweets-list>
+    <commits-list v-bind:commits="commits"></commits-list>
   </div>
 </template>
 

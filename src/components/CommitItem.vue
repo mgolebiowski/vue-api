@@ -1,8 +1,8 @@
 <script>
 export default {
-  name: "TweetItem",
+  name: "CommitItem",
   props: {
-    tweet: Object
+    commit: Object
   },
   methods: {
     processDate (date) {
@@ -15,9 +15,9 @@ export default {
 
 <template>
   <div>
-    <h3>{{tweet.author}}</h3>
-    <p>{{tweet.content}}</p>
-    <p class="to-right">{{processDate(tweet.date)}}</p>
+    <h3>{{commit.author}}</h3>
+    <p>{{commit.content}}</p>
+    <p class="to-right">{{processDate(commit.date)}}</p>
     <hr>
   </div>
 </template>
