@@ -2,9 +2,11 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueResource from 'vue-resource';
+var VuePaginate = require('vue-paginate')
 import App from './App'
 import router from './router'
 Vue.use(VueResource);
+Vue.use(VuePaginate);
 
 Vue.config.productionTip = false
 
