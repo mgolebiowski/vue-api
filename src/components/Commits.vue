@@ -11,13 +11,15 @@ export default {
   },
   created () {
     this.$http.get("https://api.github.com/repos/mgolebiowski/cqrs_exploration/commits").then(response => {
-      response.body.forEach((Obj) => {
-        var newObj = {};
-        newObj.id = Obj["sha"];
-        newObj.author = Obj["commit"]["author"]["name"];
-        newObj.content = Obj["commit"]["message"];
-        newObj.date = Obj["commit"]["author"]["date"];
-        this.commits.push(newObj);
+      response.body.forEach((commit) => {
+        this.commits.push(
+          {
+            id: commit["sha"],
+            author: commit["commit"]["author"]["name"],
+            content: commit["commit"]["message"],
+            date: commit["commit"]["author"]["date"]
+          }
+        );
       });
       this.isNotReady = false;
     });
