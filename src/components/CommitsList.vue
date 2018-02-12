@@ -16,7 +16,10 @@ export default {
 
 <template>
   <div>
-    <paginate-links v-if="commits.length" for="commitsPag" :show-step-links="true"></paginate-links>
+    <paginate-links
+      v-if="commits.length"
+      for="commitsPag"
+      :show-step-links="true" />
     <paginate
       ref="paginator"
       name="commitsPag"
