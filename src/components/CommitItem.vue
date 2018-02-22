@@ -1,27 +1,27 @@
 <script>
 export default {
-  name: "CommitItem",
+  name: 'CommitItem',
   props: {
-    commit: Object
+    comps: Array,
+    compsProps: Object
   },
-  methods: {
-    processDate (date) {
-      let dateObj = new Date(date);
-      return dateObj.toGMTString();
-    }
+  components: {},
+  render (h) {
+
+    const compRenderArray = this.comps.reduce((acc, comp) => {
+      acc.push(
+        h(comp.name, {
+          props: this.compsProps[comp.name]
+        })
+      );
+      return acc;
+    }, []);
+
+    compRenderArray.push(h("hr"));
+    return h("div", {}, compRenderArray);
   }
 }
 </script>
-
-<template>
-  <div>
-    <h3>{{commit.author}}</h3>
-    <p>{{commit.content}}</p>
-    <p class="to-right">{{processDate(commit.date)}}</p>
-    <hr>
-  </div>
-</template>
-
 <style>
   p.to-right{
     text-align: right;

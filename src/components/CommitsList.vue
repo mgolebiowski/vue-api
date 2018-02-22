@@ -1,15 +1,26 @@
 <script>
 import CommitItem from "@/components/CommitItem";
+import {compTitle, compContent, compDate} from "@/components/CommitItemComps";
+
 export default {
   name: "CommitsList",
-  props: { commits: Array },
+  props: {
+    commits: Array
+  },
   data () {
     return {
+      //!
+      compsToInject: [compTitle, compContent, compDate],
       paginate: ['commitsPag']
     }
   },
   components: {
-    "commit-item": CommitItem
+    "commit-item": Object.assign(CommitItem, {components: {compTitle, compContent, compDate}})
+  },
+  methods: {
+    compsProps (commit) {
+      return { compTitle: {title: commit.author}, compContent: {content: commit.content}, compDate: {date: commit.date} }
+    }
   }
 }
 </script>
@@ -27,9 +38,10 @@ export default {
       :per="5"
       tag="div">
       <commit-item
-            v-for="commit in paginated('commitsPag')"
-            v-bind:key="commit.id"
-            v-bind:commit="commit">
+          v-for="commit in paginated('commitsPag')"
+          v-bind:key="commit.id"
+          v-bind:comps="compsToInject"
+          v-bind:compsProps="compsProps(commit)">
       </commit-item>
     </paginate>
     <span v-if="$refs.paginator && commits.length">
