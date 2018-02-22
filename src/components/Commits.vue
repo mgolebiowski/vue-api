@@ -5,7 +5,7 @@ export default {
   data () {
     return {
       msg: 'Vue.js App',
-      isNotReady: true,
+      show: true,
       commits: []
     }
   },
@@ -21,22 +21,23 @@ export default {
           }
         );
       });
-      this.isNotReady = false;
+      this.show = false;
     });
+  },
+  render: function(createElement){
+    const h = createElement;
+    let elements = [];
+    elements.push(h('h1', `${this.msg} | Commits`));
+    elements.push(h('h3', {directives: [{name: 'show', value: this.show, expression: 'show'}],}, `Please wait...`));
+    elements.push(h(CommitsList, {props: { commits: this.commits} }));
+
+    return h('div', {}, elements)
   },
   components: {
     "commits-list": CommitsList
   }
 }
 </script>
-
-<template>
-  <div>
-    <h1>{{msg}} | Commits</h1>
-    <h3 v-if="isNotReady">Please wait...</h3>
-    <commits-list v-bind:commits="commits"></commits-list>
-  </div>
-</template>
 
 <style lang="css" scoped>
   div{
