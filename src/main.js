@@ -4,16 +4,19 @@ import Vue from 'vue'
 import VueResource from 'vue-resource';
 var VuePaginate = require('vue-paginate')
 import App from './App'
-import router from './router'
+
 Vue.use(VueResource);
 Vue.use(VuePaginate);
 
 Vue.config.productionTip = false
 
+Vue.component('button-edit',{
+  template: "<button>hello world</button>"
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
   components: { App },
-  template: '<App/>'
+  template: '<App></App>'
 })

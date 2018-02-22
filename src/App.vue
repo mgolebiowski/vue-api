@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <router-view/>
+    <Commits></Commits>
   </div>
 </template>
 
 <script>
+import Commits from "@/components/Commits";
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Commits
+  }
 }
 </script>
 
